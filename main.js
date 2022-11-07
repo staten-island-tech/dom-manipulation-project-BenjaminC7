@@ -1,26 +1,12 @@
 const DOMSelectors = {
   button: document.getElementById("btn"),
-  text: document.querySelector("#text"),
-  points: document.querySelectorAll(".point"),
-  box: document.getElementById("big-black-box"),
+  box: document.getElementById("container-box"),
+  input: document.querySelector(`#input`),
 };
-function backgroundAndText(background, text) {
-  background.style.backgroundColor = "red";
-  text.textContent = "Ths is now a big red box";
-  text.style.fontSize = "40px";
-}
-
+//const cat = "meow";
+//DOMSelectors.box.insertAdjacentHTML("afterbegin", `<h1>We are ${cat}</h1>`);
 DOMSelectors.button.addEventListener("click", function () {
-  backgroundAndText(DOMSelectors.box, DOMSelectors.text);
+  let input = DOMSelectors.input.value;
+  DOMSelectors.box.insertAdjacentHTML("beforeend", `<p>${input}</p>`);
+  DOMSelectors.input.value = "";
 });
-
-function changeLi() {
-  let pointIndex = 1;
-  DOMSelectors.points.forEach((point) => {
-    point.addEventListener("click", function () {
-      point.textContent = `Hello I am point ${pointIndex}`;
-      pointIndex++;
-    });
-  });
-}
-changeLi();
