@@ -19,22 +19,33 @@ DOMSelectors.injector.addEventListener("click", function () {
     age: `${age}`,
     favClr: `${favClr}`,
   };
-  function inject(backgrond, name, age) {
-    backgrond.style.backgroundColor = `${profile.favClr}`;
-    name.textContent = `Hi! My name is ${profile.name}.`;
-    age.textContent = `I am ${profile.age} years old.`;
-    DOMSelectors.reseter.innerHTML = `<button type="button" class="button" id="reseter">
-    Click Here to Reset
-  </button>`;
-  }
-  function clear() {
-    DOMSelectors.input1.value = "";
-    DOMSelectors.input2.value = "";
-    DOMSelectors.input3.value = "";
-  }
-  inject(DOMSelectors.newObj, DOMSelectors.objName, DOMSelectors.objAge);
+
+  inject(
+    DOMSelectors.newObj,
+    DOMSelectors.objName,
+    DOMSelectors.objAge,
+    profile.name,
+    profile.age,
+    profile.favClr
+  );
   clear();
 });
+
+function clear() {
+  DOMSelectors.input1.value = "";
+  DOMSelectors.input2.value = "";
+  DOMSelectors.input3.value = "";
+}
+
+function inject(background, nameLine, ageLine, name, age, favClr) {
+  background.style.backgroundColor = `${favClr}`;
+  nameLine.textContent = `Hi! My name is ${name}.`;
+  ageLine.textContent = `I am ${age} years old.`;
+  DOMSelectors.reseter.innerHTML = `<button type="button" class="button" id="reseter">
+  Click Here to Reset
+</button>`;
+}
+
 DOMSelectors.reseter.addEventListener("click", function () {
   DOMSelectors.newObj.style.backgroundColor = ``;
   DOMSelectors.objName.textContent = ``;
