@@ -19,15 +19,6 @@ DOMSelectors.injector.addEventListener("click", function () {
     age: `${age}`,
     favClr: `${favClr}`,
   };
-
-  inject(
-    DOMSelectors.newObj,
-    DOMSelectors.objName,
-    DOMSelectors.objAge,
-    profile.name,
-    profile.age,
-    profile.favClr
-  );
   clear();
 });
 
