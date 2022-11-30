@@ -4,8 +4,6 @@ const DOMSelectors = {
   input2: document.getElementById(`input2`),
   input3: document.getElementById(`input3`),
   injector: document.getElementById(`injector`),
-  reseter: document.getElementById(`reseter`),
-  newObj: document.getElementById(`newObj`),
   objName: document.getElementById(`objName`),
   objAge: document.getElementById(`objAge`),
 };
@@ -19,6 +17,8 @@ DOMSelectors.injector.addEventListener("click", function () {
     age: `${age}`,
     favClr: `${favClr}`,
   };
+  inject(profile.name, profile.age, profile.favClr);
+  createReseter();
   clear();
 });
 
@@ -28,18 +28,25 @@ function clear() {
   DOMSelectors.input3.value = "";
 }
 
-function inject(background, nameLine, ageLine, name, age, favClr) {
-  background.style.backgroundColor = `${favClr}`;
-  nameLine.textContent = `Hi! My name is ${name}.`;
-  ageLine.textContent = `I am ${age} years old.`;
-  DOMSelectors.reseter.innerHTML = `<button type="button" class="button" id="reseter">
-  Click Here to Reset
-</button>`;
+function inject(name, age, favClr) {
+  DOMSelectors.box.insertAdjacentHTML(
+    "afterend",
+    `<div id="newObj">
+    <h2 id="objName">Hi! My name is ${name}.</h2>
+    <h3 id="objAge">I am ${age} years old.</h3>
+    <button type="button" class="button" id="reseter">
+    Click Here to Reset
+    </button>
+    </div>`
+  );
+  const newObj = document.getElementById(`newObj`);
+  newObj.style.backgroundColor = `${favClr}`;
 }
 
-DOMSelectors.reseter.addEventListener("click", function () {
-  DOMSelectors.newObj.style.backgroundColor = ``;
-  DOMSelectors.objName.textContent = ``;
-  DOMSelectors.objAge.textContent = ``;
-  DOMSelectors.reseter.innerHTML = ``;
-});
+function createReseter() {
+  const reseter = document.getElementById("reseter");
+  const newObj = document.getElementById(`newObj`);
+  reseter.addEventListener("click", function () {
+    newObj.remove();
+  });
+}
